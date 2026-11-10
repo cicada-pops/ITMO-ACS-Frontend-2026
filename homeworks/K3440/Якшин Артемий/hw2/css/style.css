@@ -763,7 +763,8 @@ a:hover {
   height: 2.4rem;
   border-radius: 50%;
   background-color: var(--color-accent-soft);
-  color: var(--color-accent);
+  /* контраст 5.45:1; автоматические проверки псевдоэлементы не видят, нашёл Firefox */
+  color: var(--color-accent-hover);
   font-family: var(--font-heading);
   font-weight: 700;
 }

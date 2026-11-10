@@ -202,9 +202,10 @@ async function toggleFollow(button) {
   page.querySelector('[data-followers]').textContent = state.followers.length
 }
 
-page.addEventListener('click', async (event) => {
+// обработчик на document, чтобы <main> не считался кликабельным элементом
+document.addEventListener('click', async (event) => {
   const button = event.target.closest('[data-action], [data-delete-comment]')
-  if (!button) return
+  if (!button || !page.contains(button)) return
   if (!isLoggedIn()) return goToLogin()
 
   button.disabled = true

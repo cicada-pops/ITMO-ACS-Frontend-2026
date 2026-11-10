@@ -18,9 +18,11 @@ export async function loadSaved() {
 }
 
 export function bindSaveButtons(container, saved, onChange) {
-  container.addEventListener('click', async (event) => {
+  // слушаем document, а не контейнер: иначе Firefox считает div кликабельным
+  // элементом без фокуса и интерактивной роли (проверка «Клавиатура»)
+  document.addEventListener('click', async (event) => {
     const button = event.target.closest('[data-save]')
-    if (!button) return
+    if (!button || !container.contains(button)) return
 
     if (!isLoggedIn()) {
       goToLogin()
