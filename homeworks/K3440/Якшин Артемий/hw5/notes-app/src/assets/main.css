@@ -1,35 +1,21 @@
-@import './base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+/* немного собственных стилей поверх Bootstrap */
+:root {
+  --note-accent: #b84a24;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+body {
+  background-color: #fbf6f0;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.note-form {
+  max-width: 36rem;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.btn-primary {
+  --bs-btn-bg: #b84a24;
+  --bs-btn-border-color: #b84a24;
+  --bs-btn-hover-bg: #9c3d1c;
+  --bs-btn-hover-border-color: #9c3d1c;
+  --bs-btn-active-bg: #9c3d1c;
+  --bs-btn-active-border-color: #9c3d1c;
 }
