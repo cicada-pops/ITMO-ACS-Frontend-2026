@@ -11,14 +11,19 @@ const instance = axios.create({
   paramsSerializer: { indexes: null }
 })
 
-// к каждому запросу добавляем токен, если пользователь вошёл
-instance.interceptors.request.use((config) => {
-  const auth = useAuthStore()
-  if (auth.token) {
-    config.headers.Authorization = `Bearer ${auth.token}`
-  }
-  return config
-})
+// к каждому запросу добавляем токен, если пользователь вошёл.
+// synchronous: токен берётся в момент вызова, а не позже в цепочке промисов
+instance.interceptors.request.use(
+  (config) => {
+    const auth = useAuthStore()
+    if (auth.token) {
+      config.headers.Authorization = `Bearer ${auth.token}`
+    }
+    return config
+  },
+  null,
+  { synchronous: true }
+)
 
 // токен json-server-auth живёт час: на 401 завершаем сессию,
 // а куда перейти дальше, решает страница (через useApiError)
