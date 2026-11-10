@@ -2,24 +2,12 @@
 
 import { getCurrentUser, isLoggedIn, logout } from './auth.js'
 
-const ICONS = {
-  ladle: '<path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/>',
-  heart: '<path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10z"/>',
-  bookmark: '<path d="M6 4h12v16l-6-4-6 4z"/>',
-  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
-  level: '<path d="M6 20v-4M12 20v-8M18 20V6"/>',
-  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20a6.5 6.5 0 0 0-4-6"/>',
-  comment: '<path d="M4 5h16v11H9l-5 4z"/>',
-  plus: '<path d="M12 5v14M5 12h14"/>',
-  edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/>',
-  trash: '<path d="M4 7h16M10 7V4h4v3M6 7l1 13h10l1-13"/>',
-  pin: '<path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z"/><circle cx="12" cy="10" r="2"/>',
-  logout: '<path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/>'
-}
+// все иконки лежат в общем спрайте img/sprite.svg, здесь только ссылка на нужную.
+// Иконки декоративные: смысл всегда передаёт текст рядом или aria-label кнопки
+const SPRITE = 'img/sprite.svg'
 
-// иконки декоративные: смысл всегда передаёт текст рядом или aria-label кнопки
 export function icon(name) {
-  return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`
+  return `<svg class="icon" aria-hidden="true" focusable="false"><use href="${SPRITE}#icon-${name}"></use></svg>`
 }
 
 // всё, что пришло от пользователя, вставляем в разметку только экранированным
