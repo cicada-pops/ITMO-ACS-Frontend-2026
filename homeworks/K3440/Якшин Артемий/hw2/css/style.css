@@ -438,10 +438,12 @@ a:hover {
   border: 0;
 }
 
+/* legend остаётся «плавающим», как в reboot Bootstrap: иначе браузер
+   встраивает его в рамку fieldset прямо поверх пунктирного разделителя */
 .filters__title {
   display: block;
-  float: none;
-  width: auto;
+  float: left;
+  width: 100%;
   margin-bottom: 0.6rem;
   font-family: var(--font-body);
   font-size: 1rem;
