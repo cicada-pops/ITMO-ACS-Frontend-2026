@@ -5,6 +5,8 @@ Vue 3, Vue Router, Pinia (+ `pinia-persists`), axios, Bootstrap 5. API — `json
 
 ## Запуск
 
+Нужен Node.js 22.18+ или 24.12+ (требование create-vue и Vite 8).
+
 ```bash
 npm install
 npm run dev        # API на :3000 и приложение на :8080 одной командой
