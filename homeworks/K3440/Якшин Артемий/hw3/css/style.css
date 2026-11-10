@@ -3,27 +3,14 @@
    Bootstrap 5 даёт сетку и компоненты, здесь — фирменный вид
    ========================================================== */
 
+/* цвета вынесены в css/themes/light.css и css/themes/dark.css,
+   здесь остаются только то, что от темы не зависит */
 :root {
-  --color-bg: #fbf6f0;
-  --color-surface: #ffffff;
-  --color-surface-soft: #f5ece3;
-  --color-text: #2a211c;
-  --color-muted: #6e625a;
-  --color-border: #eadfd5;
-  --color-accent: #b84a24;
-  --color-accent-hover: #9c3d1c;
-  --color-accent-soft: #f6e3d8;
-  --color-olive: #5e6b3f;
-  --color-olive-soft: #e8ecdc;
-  --color-gold: #946616;
-
   --font-heading: "Lora", Georgia, serif;
   --font-body: "Nunito", "Segoe UI", Arial, sans-serif;
 
   --radius: 1rem;
   --radius-sm: 0.625rem;
-  --shadow: 0 6px 24px rgba(42, 33, 28, 0.08);
-  --shadow-hover: 0 12px 32px rgba(42, 33, 28, 0.14);
 }
 
 body {
@@ -52,13 +39,13 @@ main:focus {
   padding: 0.6rem 1rem;
   border-radius: var(--radius-sm);
   background-color: var(--color-text);
-  color: #fff;
+  color: var(--color-bg);
   font-weight: 700;
   transform: translateY(-200%);
 }
 
 .skip-link:focus {
-  color: #fff;
+  color: var(--color-bg);
   transform: none;
 }
 
@@ -136,30 +123,31 @@ a:hover {
 }
 
 .btn-accent {
-  --bs-btn-color: #fff;
+  --bs-btn-color: var(--color-on-accent);
   --bs-btn-bg: var(--color-accent);
   --bs-btn-border-color: var(--color-accent);
-  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-color: var(--color-on-accent);
   --bs-btn-hover-bg: var(--color-accent-hover);
   --bs-btn-hover-border-color: var(--color-accent-hover);
-  --bs-btn-active-color: #fff;
+  --bs-btn-active-color: var(--color-on-accent);
   --bs-btn-active-bg: var(--color-accent-hover);
   --bs-btn-active-border-color: var(--color-accent-hover);
+  --bs-btn-disabled-color: var(--color-on-accent);
   --bs-btn-disabled-bg: var(--color-accent);
   --bs-btn-disabled-border-color: var(--color-accent);
-  --bs-btn-focus-shadow-rgb: 184, 74, 36;
+  --bs-btn-focus-shadow-rgb: var(--accent-rgb);
 }
 
 .btn-outline-accent {
   --bs-btn-color: var(--color-accent);
   --bs-btn-border-color: var(--color-accent);
-  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-color: var(--color-on-accent);
   --bs-btn-hover-bg: var(--color-accent);
   --bs-btn-hover-border-color: var(--color-accent);
-  --bs-btn-active-color: #fff;
+  --bs-btn-active-color: var(--color-on-accent);
   --bs-btn-active-bg: var(--color-accent-hover);
   --bs-btn-active-border-color: var(--color-accent-hover);
-  --bs-btn-focus-shadow-rgb: 184, 74, 36;
+  --bs-btn-focus-shadow-rgb: var(--accent-rgb);
 }
 
 .btn-soft {
@@ -205,7 +193,7 @@ a:hover {
 .form-select:focus,
 .form-check-input:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 0.25rem rgba(184, 74, 36, 0.18);
+  box-shadow: 0 0 0 0.25rem var(--focus-ring);
 }
 
 .form-check-input:checked {
@@ -249,7 +237,7 @@ a:hover {
   height: 2.2rem;
   border-radius: 50%;
   background-color: var(--color-accent);
-  color: #fff;
+  color: var(--color-on-accent);
 }
 
 .site-header .nav-link {
@@ -438,10 +426,12 @@ a:hover {
   border: 0;
 }
 
+/* legend остаётся «плавающим», как в reboot Bootstrap: иначе браузер
+   встраивает его в рамку fieldset прямо поверх пунктирного разделителя */
 .filters__title {
   display: block;
-  float: none;
-  width: auto;
+  float: left;
+  width: 100%;
   margin-bottom: 0.6rem;
   font-family: var(--font-body);
   font-size: 1rem;
@@ -465,7 +455,7 @@ a:hover {
   --bs-btn-hover-color: var(--color-accent);
   --bs-btn-hover-bg: transparent;
   --bs-btn-hover-border-color: var(--color-accent);
-  --bs-btn-active-color: #fff;
+  --bs-btn-active-color: var(--color-on-accent);
   --bs-btn-active-bg: var(--color-accent);
   --bs-btn-active-border-color: var(--color-accent);
 }
@@ -525,8 +515,8 @@ a:hover {
   left: 0.75rem;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.92);
-  color: var(--color-text);
+  background-color: var(--color-chip-bg);
+  color: var(--color-chip-text);
   font-weight: 700;
 }
 
@@ -542,13 +532,13 @@ a:hover {
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.92);
-  color: var(--color-text);
+  background-color: var(--color-chip-bg);
+  color: var(--color-chip-text);
 }
 
 .recipe-card__save:hover,
 .recipe-card__save.is-active {
-  background-color: #fff;
+  background-color: var(--color-surface);
   color: var(--color-accent);
 }
 
@@ -808,7 +798,7 @@ a:hover {
 .profile-cover {
   height: 160px;
   background:
-    linear-gradient(120deg, rgba(184, 74, 36, 0.85), rgba(192, 138, 46, 0.75)),
+    var(--cover-gradient),
     url("../img/recipes/shakshuka.jpg") center / cover;
 }
 
@@ -844,6 +834,7 @@ a:hover {
 
 .profile-tabs {
   --bs-nav-pills-link-active-bg: var(--color-accent);
+  --bs-nav-pills-link-active-color: var(--color-on-accent);
   --bs-nav-link-color: var(--color-muted);
   --bs-nav-link-hover-color: var(--color-accent);
   gap: 0.5rem;
@@ -1049,12 +1040,34 @@ a:hover {
 .toast {
   border-radius: var(--radius-sm);
   background-color: var(--color-text);
-  color: #fff;
+  color: var(--color-bg);
   font-weight: 600;
 }
 
 .toast .btn-close {
-  filter: invert(1);
+  filter: var(--toast-close-filter);
+}
+
+/* ---------- переключатель темы ---------- */
+
+.theme-switcher .btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0;
+}
+
+.theme-switcher .dropdown-item.active,
+.theme-switcher .dropdown-item:active {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent-hover);
+}
+
+/* на кнопке показываем иконку той темы, что сейчас на экране */
+[data-bs-theme="dark"] .theme-icon-light,
+[data-bs-theme="light"] .theme-icon-dark {
+  display: none;
 }
 
 .dropdown-menu {
