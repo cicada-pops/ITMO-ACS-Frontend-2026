@@ -102,9 +102,10 @@ export const addLike = (userId, recipeId) =>
 
 export const removeLike = (id) => request(`/likes/${id}`, { method: 'DELETE', auth: true })
 
-// /saves закрыт правилом 600: читать и менять может только владелец.
-// Особенность json-server-auth: если записей нет, на такой список он
-// отвечает 403 («entity must have a reference to the owner id»), а не [].
+// /saves закрыт правилом 600: создавать, менять и удалять записи может
+// только владелец. Список json-server-auth проверяет упрощённо: пускает,
+// если в коллекции есть хоть одна запись текущего пользователя. Поэтому
+// у пользователя без сохранений вместо [] приходит 403.
 export const getSaves = (params) =>
   request('/saves', { params, auth: true }).catch((error) => {
     if (error.status === 403) return []
