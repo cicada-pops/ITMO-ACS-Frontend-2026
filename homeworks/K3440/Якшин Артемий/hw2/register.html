@@ -46,34 +46,34 @@
       <div class="auth__card">
         <h1 class="auth__title">Регистрация</h1>
         <p class="text-muted-warm mb-4">Создайте аккаунт, чтобы публиковать свои рецепты.</p>
-        <div class="alert alert-danger d-none" id="formError"></div>
+        <div class="alert alert-danger d-none" id="formError" role="alert"></div>
         <form class="needs-validation" id="registerForm" novalidate>
           <div class="mb-3">
             <label class="form-label" for="regName">Имя и фамилия</label>
-            <input class="form-control" id="regName" name="name" type="text" placeholder="Мария Иванова" required>
-            <div class="invalid-feedback">Как к вам обращаться?</div>
+            <input class="form-control" id="regName" name="name" type="text" placeholder="Мария Иванова" autocomplete="name" aria-describedby="regNameError" required>
+            <div class="invalid-feedback" id="regNameError">Как к вам обращаться?</div>
           </div>
           <div class="mb-3">
             <label class="form-label" for="regEmail">Электронная почта</label>
-            <input class="form-control" id="regEmail" name="email" type="email" placeholder="you@example.com" required>
-            <div class="invalid-feedback">Введите корректный адрес почты.</div>
+            <input class="form-control" id="regEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" aria-describedby="regEmailError" required>
+            <div class="invalid-feedback" id="regEmailError">Введите корректный адрес почты.</div>
           </div>
           <div class="row g-3 mb-3">
             <div class="col-sm-6">
               <label class="form-label" for="regPassword">Пароль</label>
-              <input class="form-control" id="regPassword" name="password" type="password" minlength="6" required>
-              <div class="invalid-feedback">Не меньше 6 символов.</div>
+              <input class="form-control" id="regPassword" name="password" type="password" minlength="6" autocomplete="new-password" aria-describedby="regPasswordError" required>
+              <div class="invalid-feedback" id="regPasswordError">Не меньше 6 символов.</div>
             </div>
             <div class="col-sm-6">
               <label class="form-label" for="regPassword2">Повторите пароль</label>
-              <input class="form-control" id="regPassword2" name="password2" type="password" minlength="6" required>
-              <div class="invalid-feedback">Пароли не совпадают.</div>
+              <input class="form-control" id="regPassword2" name="password2" type="password" minlength="6" autocomplete="new-password" aria-describedby="regPassword2Error" required>
+              <div class="invalid-feedback" id="regPassword2Error">Пароли не совпадают.</div>
             </div>
           </div>
           <div class="form-check mb-4">
-            <input class="form-check-input" id="regAgree" type="checkbox" required>
+            <input class="form-check-input" id="regAgree" type="checkbox" aria-describedby="regAgreeError" required>
             <label class="form-check-label" for="regAgree">Соглашаюсь с правилами сообщества</label>
-            <div class="invalid-feedback">Нужно согласие с правилами.</div>
+            <div class="invalid-feedback" id="regAgreeError">Нужно согласие с правилами.</div>
           </div>
           <button class="btn btn-accent w-100 py-2" type="submit">Создать аккаунт</button>
         </form>

@@ -86,8 +86,8 @@
             <div class="row g-3">
               <div class="col-12">
                 <label class="form-label" for="recipeTitle">Название</label>
-                <input class="form-control" id="recipeTitle" name="title" type="text" placeholder="Например, сырники со сметаной" required>
-                <div class="invalid-feedback">Укажите название блюда.</div>
+                <input class="form-control" id="recipeTitle" name="title" type="text" placeholder="Например, сырники со сметаной" aria-describedby="recipeTitleError" required>
+                <div class="invalid-feedback" id="recipeTitleError">Укажите название блюда.</div>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="recipeType">Тип блюда</label>
@@ -120,13 +120,13 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="recipeIngredients">Ингредиенты</label>
-                <textarea class="form-control" id="recipeIngredients" name="ingredients" rows="5" placeholder="Творог — 400 г&#10;Яйцо — 1 шт." required></textarea>
-                <div class="form-text">Каждый ингредиент с новой строки.</div>
+                <textarea class="form-control" id="recipeIngredients" name="ingredients" rows="5" placeholder="Творог — 400 г&#10;Яйцо — 1 шт." aria-describedby="ingredientsHint" required></textarea>
+                <div class="form-text" id="ingredientsHint">Каждый ингредиент с новой строки в формате «продукт — количество».</div>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="recipeSteps">Шаги приготовления</label>
-                <textarea class="form-control" id="recipeSteps" name="steps" rows="5" placeholder="Смешайте творог с яйцом..." required></textarea>
-                <div class="form-text">Каждый шаг с новой строки.</div>
+                <textarea class="form-control" id="recipeSteps" name="steps" rows="5" placeholder="Смешайте творог с яйцом..." aria-describedby="stepsHint" required></textarea>
+                <div class="form-text" id="stepsHint">Каждый шаг с новой строки.</div>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="recipeImage">Ссылка на фото</label>
@@ -156,11 +156,11 @@
           <div class="modal-body">
             <div class="mb-3">
               <label class="form-label" for="profileName">Имя и фамилия</label>
-              <input class="form-control" id="profileName" name="name" type="text" required>
+              <input class="form-control" id="profileName" name="name" type="text" autocomplete="name" required>
             </div>
             <div class="mb-3">
               <label class="form-label" for="profileCity">Город</label>
-              <input class="form-control" id="profileCity" name="city" type="text">
+              <input class="form-control" id="profileCity" name="city" type="text" autocomplete="address-level2">
             </div>
             <div>
               <label class="form-label" for="profileBio">О себе</label>

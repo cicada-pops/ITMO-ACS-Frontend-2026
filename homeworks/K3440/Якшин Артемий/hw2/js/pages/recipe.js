@@ -147,8 +147,8 @@ function render() {
           ${isLoggedIn() ? `
           <form class="mb-3 needs-validation" id="commentForm" novalidate>
             <label class="form-label" for="commentText">Ваш комментарий</label>
-            <textarea class="form-control" id="commentText" name="text" rows="3" placeholder="Как у вас получилось?" required></textarea>
-            <div class="invalid-feedback">Напишите хотя бы пару слов.</div>
+            <textarea class="form-control" id="commentText" name="text" rows="3" placeholder="Как у вас получилось?" aria-describedby="commentError" required></textarea>
+            <div class="invalid-feedback" id="commentError">Напишите хотя бы пару слов.</div>
             <button class="btn btn-accent mt-2" type="submit">Отправить</button>
           </form>` : `
           <p class="text-muted-warm"><a href="login.html?next=${encodeURIComponent(location.pathname + location.search)}">Войдите</a>, чтобы оставить комментарий.</p>`}
