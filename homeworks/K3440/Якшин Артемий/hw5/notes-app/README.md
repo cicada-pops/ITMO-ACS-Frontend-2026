@@ -1,44 +1,28 @@
-# notes-app
+# ДЗ5. Заметки на Vue.js
 
-This template should help get you started developing with Vue 3 in Vite.
+Учебное приложение по мануалу курса: Vue 3 + Vue Router + Pinia (с `pinia-persists`) + axios + Bootstrap,
+API заметок — `json-server`.
 
-## Recommended IDE Setup
+## Запуск
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+```bash
+npm install      # установить зависимости из package.json
+npm run api      # API заметок на http://localhost:3000 (json-server, db.json)
+npm start        # приложение на http://localhost:8080
 ```
 
-### Compile and Hot-Reload for Development
+Другие команды: `npm run build` — сборка в `dist/`, `npm run lint` — проверка кода (oxlint + ESLint).
 
-```sh
-npm run dev
+## Структура
+
 ```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+src/
+├── api/          instance.js (общий axios), notes.js (класс NotesApi), index.js
+├── stores/       index.js (Pinia + pinia-persists), notes.js (хранилище заметок)
+├── layouts/      BaseLayout.vue — обёртка-контейнер со слотом
+├── components/   NoteCard.vue — карточка заметки (props name, text; событие delete)
+├── views/        NotesPage.vue — страница с формой и списком заметок
+├── router/       index.js — маршрут «/» с ленивой загрузкой страницы
+├── App.vue       только <router-view />
+└── main.js       подключение Pinia, роутера и Bootstrap
 ```
