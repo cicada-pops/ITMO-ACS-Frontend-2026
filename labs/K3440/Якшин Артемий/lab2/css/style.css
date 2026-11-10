@@ -954,3 +954,33 @@ a:hover {
     font-size: 1.6rem;
   }
 }
+
+/* ---------- уведомления и меню пользователя ---------- */
+
+.toast {
+  border-radius: var(--radius-sm);
+  background-color: var(--color-text);
+  color: #fff;
+  font-weight: 600;
+}
+
+.toast .btn-close {
+  filter: invert(1);
+}
+
+.dropdown-menu {
+  border-color: var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.dropdown-item:active {
+  background-color: var(--color-accent);
+}
