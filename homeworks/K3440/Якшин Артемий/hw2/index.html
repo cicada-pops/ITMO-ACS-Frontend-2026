@@ -12,19 +12,20 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
   <header class="site-header">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" aria-label="Основное меню">
       <div class="container">
         <a class="navbar-brand brand" href="index.html">
-          <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
+          <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
           Поварёшка
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto ms-lg-4">
-            <li class="nav-item"><a class="nav-link active" href="index.html">Рецепты</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Рецепты</a></li>
             <li class="nav-item"><a class="nav-link" href="author.html">Кулинары</a></li>
             <li class="nav-item"><a class="nav-link" href="profile.html">Мой кабинет</a></li>
           </ul>
@@ -34,7 +35,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <section class="hero">
       <div class="container">
         <div class="row align-items-center g-5">
@@ -44,7 +45,7 @@
             <p class="hero__text my-3">Рецепты от людей, которые готовят каждый день: с фотографиями, пошаговыми инструкциями и видео.</p>
             <form class="hero-search" id="searchForm" role="search">
               <input class="form-control" type="search" name="q" placeholder="Блины, борщ или «яйца»">
-              <button class="btn btn-accent px-4" type="submit"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg> Найти</button>
+              <button class="btn btn-accent px-4" type="submit"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg> Найти</button>
             </form>
             <div class="hero__chips">
               <button class="chip" type="button" data-chip="блины">Блины</button>
@@ -54,10 +55,10 @@
             </div>
           </div>
           <div class="col-lg-5 d-none d-lg-block">
-            <div class="hero__photos">
-              <img src="img/recipes/shakshuka.jpg" alt="Шакшука в сковороде">
-              <img src="img/recipes/blini.jpg" alt="Стопка блинов">
-              <img src="img/recipes/pumpkin-soup.jpg" alt="Тыквенный суп">
+            <div class="hero__photos" aria-hidden="true">
+              <img src="img/recipes/shakshuka.jpg" alt="">
+              <img src="img/recipes/blini.jpg" alt="">
+              <img src="img/recipes/pumpkin-soup.jpg" alt="">
             </div>
           </div>
         </div>
@@ -66,11 +67,11 @@
 
     <section class="container py-4">
       <div class="row g-4">
-        <aside class="col-lg-3">
-          <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="filtersPanel">
+        <div class="col-lg-3">
+          <div class="offcanvas-lg offcanvas-start" tabindex="-1" id="filtersPanel" aria-labelledby="filtersTitle">
             <div class="offcanvas-header">
-              <h2 class="offcanvas-title h5">Фильтры</h2>
-              <button class="btn-close" type="button" data-bs-dismiss="offcanvas" data-bs-target="#filtersPanel"></button>
+              <h2 class="offcanvas-title h5" id="filtersTitle">Фильтры</h2>
+              <button class="btn-close" type="button" aria-label="Закрыть" data-bs-dismiss="offcanvas" data-bs-target="#filtersPanel"></button>
             </div>
             <div class="offcanvas-body">
               <form class="filters w-100" id="filtersForm">
@@ -143,12 +144,12 @@
               </form>
             </div>
           </div>
-        </aside>
+        </div>
 
         <div class="col-lg-9">
           <div class="results-toolbar">
             <div class="d-flex align-items-center gap-2">
-              <button class="btn btn-soft d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#filtersPanel"><svg class="icon" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Фильтры</button>
+              <button class="btn btn-soft d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#filtersPanel"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Фильтры</button>
               <h2 class="h4 mb-0">Найдено: <span id="resultsCount">…</span></h2>
             </div>
             <select class="form-select" id="sortSelect">
@@ -170,14 +171,16 @@
   <footer class="site-footer">
     <div class="container d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
       <a class="brand text-decoration-none" href="index.html">
-        <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
+        <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
         Поварёшка
       </a>
       <p class="mb-0">Сервис для обмена рецептами. Учебный проект, ИТМО, 2026</p>
-      <ul class="list-inline mb-0">
-        <li class="list-inline-item"><a href="index.html">Рецепты</a></li>
-        <li class="list-inline-item"><a href="register.html">Стать автором</a></li>
-      </ul>
+      <nav aria-label="Ссылки в подвале">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="index.html">Рецепты</a></li>
+          <li class="list-inline-item"><a href="register.html">Стать автором</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 

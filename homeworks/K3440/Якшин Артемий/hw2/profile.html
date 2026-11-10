@@ -12,21 +12,22 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
   <header class="site-header">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" aria-label="Основное меню">
       <div class="container">
         <a class="navbar-brand brand" href="index.html">
-          <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
+          <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
           Поварёшка
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto ms-lg-4">
             <li class="nav-item"><a class="nav-link" href="index.html">Рецепты</a></li>
             <li class="nav-item"><a class="nav-link" href="author.html">Кулинары</a></li>
-            <li class="nav-item"><a class="nav-link active" href="profile.html">Мой кабинет</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="profile.html">Мой кабинет</a></li>
           </ul>
           <div class="d-flex gap-2 mt-3 mt-lg-0" id="authArea"></div>
         </div>
@@ -34,48 +35,51 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <div class="profile-cover"></div>
     <section class="container">
       <div class="profile-head" id="profileHead">
         <div class="text-center py-5">
-          <div class="spinner-border" style="color: var(--color-accent)"></div>
+          <div class="spinner-border" style="color: var(--color-accent)" role="status"><span class="visually-hidden">Загрузка…</span></div>
         </div>
       </div>
     </section>
 
     <section class="container py-3">
-      <ul class="nav nav-pills profile-tabs" role="tablist">
+      <ul class="nav nav-pills profile-tabs" role="tablist" aria-label="Разделы кабинета">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" type="button" data-bs-toggle="tab" data-bs-target="#tabMine" role="tab">Мои рецепты <span class="badge rounded-pill" id="countMine">0</span></button>
+          <button class="nav-link active" type="button" data-bs-toggle="tab" data-bs-target="#tabMine" role="tab" id="tabMineButton" aria-controls="tabMine">Мои рецепты <span class="badge rounded-pill" id="countMine">0</span></button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#tabSaved" role="tab">Сохранённые <span class="badge rounded-pill" id="countSaved">0</span></button>
+          <button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#tabSaved" role="tab" id="tabSavedButton" aria-controls="tabSaved">Сохранённые <span class="badge rounded-pill" id="countSaved">0</span></button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#tabFollowing" role="tab">Подписки <span class="badge rounded-pill" id="countFollowing">0</span></button>
+          <button class="nav-link" type="button" data-bs-toggle="tab" data-bs-target="#tabFollowing" role="tab" id="tabFollowingButton" aria-controls="tabFollowing">Подписки <span class="badge rounded-pill" id="countFollowing">0</span></button>
         </li>
       </ul>
 
       <div class="tab-content">
-        <div class="tab-pane fade show active" id="tabMine" role="tabpanel">
+        <div class="tab-pane fade show active" id="tabMine" role="tabpanel" aria-labelledby="tabMineButton">
+        <h2 class="visually-hidden">Мои рецепты</h2>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4" id="mineGrid"></div>
         </div>
-        <div class="tab-pane fade" id="tabSaved" role="tabpanel">
+        <div class="tab-pane fade" id="tabSaved" role="tabpanel" aria-labelledby="tabSavedButton">
+        <h2 class="visually-hidden">Сохранённые рецепты</h2>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4" id="savedGrid"></div>
         </div>
-        <div class="tab-pane fade" id="tabFollowing" role="tabpanel">
+        <div class="tab-pane fade" id="tabFollowing" role="tabpanel" aria-labelledby="tabFollowingButton">
+        <h2 class="visually-hidden">Подписки</h2>
           <div class="row row-cols-1 row-cols-md-2 g-3" id="followingList"></div>
         </div>
       </div>
     </section>
 
-    <div class="modal fade" id="recipeModal" tabindex="-1">
+    <div class="modal fade" id="recipeModal" tabindex="-1" aria-labelledby="recipeModalTitle">
       <div class="modal-dialog modal-lg modal-dialog-scrollable">
         <form class="modal-content needs-validation" id="recipeForm" novalidate>
           <div class="modal-header">
             <h2 class="modal-title h4" id="recipeModalTitle">Новый рецепт</h2>
-            <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+            <button class="btn-close" type="button" aria-label="Закрыть" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
             <input type="hidden" name="id">
@@ -142,12 +146,12 @@
       </div>
     </div>
 
-    <div class="modal fade" id="profileModal" tabindex="-1">
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalTitle">
       <div class="modal-dialog">
         <form class="modal-content needs-validation" id="profileForm" novalidate>
           <div class="modal-header">
-            <h2 class="modal-title h4">Редактировать профиль</h2>
-            <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+            <h2 class="modal-title h4" id="profileModalTitle">Редактировать профиль</h2>
+            <button class="btn-close" type="button" aria-label="Закрыть" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body">
             <div class="mb-3">
@@ -171,11 +175,11 @@
       </div>
     </div>
 
-    <div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalTitle">
       <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content">
           <div class="modal-body text-center p-4">
-            <p class="h5">Удалить рецепт?</p>
+            <h2 class="h5" id="deleteModalTitle">Удалить рецепт?</h2>
             <p class="text-muted-warm mb-0">Комментарии и лайки к нему тоже пропадут.</p>
           </div>
           <div class="modal-footer justify-content-center">
@@ -190,14 +194,16 @@
   <footer class="site-footer">
     <div class="container d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
       <a class="brand text-decoration-none" href="index.html">
-        <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
+        <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
         Поварёшка
       </a>
       <p class="mb-0">Сервис для обмена рецептами. Учебный проект, ИТМО, 2026</p>
-      <ul class="list-inline mb-0">
-        <li class="list-inline-item"><a href="index.html">Рецепты</a></li>
-        <li class="list-inline-item"><a href="register.html">Стать автором</a></li>
-      </ul>
+      <nav aria-label="Ссылки в подвале">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="index.html">Рецепты</a></li>
+          <li class="list-inline-item"><a href="register.html">Стать автором</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 

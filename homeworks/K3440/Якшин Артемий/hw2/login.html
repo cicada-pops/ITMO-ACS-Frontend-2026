@@ -12,14 +12,15 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Перейти к основному содержанию</a>
   <header class="site-header">
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" aria-label="Основное меню">
       <div class="container">
         <a class="navbar-brand brand" href="index.html">
-          <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
+          <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
           Поварёшка
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Открыть меню">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
@@ -34,7 +35,7 @@
     </nav>
   </header>
 
-  <main class="auth">
+  <main id="main" class="auth" tabindex="-1">
     <div class="auth__media d-none d-lg-flex" style="background-image: url('img/recipes/pumpkin-soup.jpg')">
       <blockquote class="auth__quote mb-0">
         «Лучшие рецепты — те, которыми делятся за семейным столом.»
@@ -68,14 +69,16 @@
   <footer class="site-footer mt-0">
     <div class="container d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
       <a class="brand text-decoration-none" href="index.html">
-        <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
+        <span class="brand__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h12a6 6 0 0 1-12 0z"/><path d="M15 12 21 3"/></svg></span>
         Поварёшка
       </a>
       <p class="mb-0">Сервис для обмена рецептами. Учебный проект, ИТМО, 2026</p>
-      <ul class="list-inline mb-0">
-        <li class="list-inline-item"><a href="index.html">Рецепты</a></li>
-        <li class="list-inline-item"><a href="register.html">Стать автором</a></li>
-      </ul>
+      <nav aria-label="Ссылки в подвале">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="index.html">Рецепты</a></li>
+          <li class="list-inline-item"><a href="register.html">Стать автором</a></li>
+        </ul>
+      </nav>
     </div>
   </footer>
 

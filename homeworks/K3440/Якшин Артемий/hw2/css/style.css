@@ -39,6 +39,29 @@ main {
   flex: 1 0 auto;
 }
 
+main:focus {
+  outline: none;
+}
+
+/* ссылка «Перейти к основному содержанию»: видна только при фокусе с клавиатуры */
+.skip-link {
+  position: absolute;
+  z-index: 2000;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-text);
+  color: #fff;
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  color: #fff;
+  transform: none;
+}
+
 h1, h2, h3, .h1, .h2, .h3, .h4, .h5 {
   font-family: var(--font-heading);
   font-weight: 600;
