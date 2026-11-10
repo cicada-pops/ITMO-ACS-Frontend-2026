@@ -15,7 +15,7 @@
   --color-accent-soft: #f6e3d8;
   --color-olive: #5e6b3f;
   --color-olive-soft: #e8ecdc;
-  --color-gold: #c08a2e;
+  --color-gold: #946616;
 
   --font-heading: "Lora", Georgia, serif;
   --font-body: "Nunito", "Segoe UI", Arial, sans-serif;
@@ -69,6 +69,41 @@ h1, h2, h3, .h1, .h2, .h3, .h4, .h5 {
 
 a {
   color: var(--color-accent);
+}
+
+code {
+  color: var(--color-accent-hover);
+}
+
+/* ---------- фокус с клавиатуры ---------- */
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.form-check-input:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.btn-check:focus-visible + .btn {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ссылка-заголовок растянута на всю карточку, поэтому обводим карточку целиком */
+.recipe-card:focus-within {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.recipe-card .stretched-link:focus-visible {
+  outline: none;
 }
 
 a:hover {
@@ -139,11 +174,13 @@ a:hover {
 }
 
 /* переключаемые кнопки: лайк, сохранить, подписаться */
+/* тёмный терракотовый на светлом фоне: контраст 5.45:1 (было 4.17:1) */
 .btn-toggle.is-active {
-  --bs-btn-color: var(--color-accent);
+  --bs-btn-color: var(--color-accent-hover);
   --bs-btn-bg: var(--color-accent-soft);
   --bs-btn-hover-color: var(--color-accent-hover);
   --bs-btn-hover-bg: var(--color-accent-soft);
+  --bs-btn-active-color: var(--color-accent-hover);
 }
 
 .btn-toggle.is-active .icon {
@@ -967,6 +1004,23 @@ a:hover {
 
 .site-footer a:hover {
   color: var(--color-accent);
+}
+
+/* ---------- меньше движения для тех, кто это выбрал ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .recipe-card:hover {
+    transform: none;
+  }
 }
 
 /* ---------- адаптивность ---------- */

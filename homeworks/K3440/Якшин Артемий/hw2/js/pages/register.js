@@ -8,7 +8,8 @@ if (isLoggedIn()) location.replace('profile.html')
 
 const form = document.getElementById('registerForm')
 const errorBox = document.getElementById('formError')
-const colors = ['#b84a24', '#5e6b3f', '#c08a2e', '#3f5e6b', '#8a4f7d', '#4f6b8a']
+// все цвета дают контраст не меньше 4.5:1 с белыми инициалами
+const colors = ['#b84a24', '#5e6b3f', '#946616', '#3f5e6b', '#8a4f7d', '#4f6b8a']
 
 const messages = {
   'Email already exists': 'Пользователь с такой почтой уже зарегистрирован',
