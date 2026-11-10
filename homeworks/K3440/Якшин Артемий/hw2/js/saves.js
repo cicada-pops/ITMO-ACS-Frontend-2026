@@ -43,6 +43,7 @@ export function bindSaveButtons(container, saved, onChange) {
 
       const isSaved = saved.has(recipeId)
       button.classList.toggle('is-active', isSaved)
+      button.setAttribute('aria-pressed', isSaved)
       button.title = isSaved ? 'Убрать из сохранённых' : 'Сохранить'
       onChange?.(recipeId, isSaved)
     } catch (error) {

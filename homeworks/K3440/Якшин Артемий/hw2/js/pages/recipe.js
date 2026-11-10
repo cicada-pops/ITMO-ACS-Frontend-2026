@@ -41,7 +41,7 @@ function commentHtml(comment) {
         <div class="comment__head">
           <a class="comment__name text-reset text-decoration-none" href="author.html?id=${comment.userId}">${escapeHtml(comment.user?.name)}</a>
           <span class="comment__date">${formatDate(comment.createdAt)}</span>
-          ${own ? `<button class="btn btn-link btn-sm p-0 ms-auto text-muted-warm" type="button" data-delete-comment="${comment.id}">Удалить</button>` : ''}
+          ${own ? `<button class="btn btn-link btn-sm p-0 ms-auto text-muted-warm" type="button" data-delete-comment="${comment.id}" aria-label="Удалить мой комментарий от ${formatDate(comment.createdAt)}">Удалить</button>` : ''}
         </div>
         <p>${escapeHtml(comment.text)}</p>
       </div>
@@ -69,7 +69,7 @@ function render() {
 
     <div class="row g-4 g-lg-5 align-items-center">
       <div class="col-lg-6">
-        <img class="recipe-photo" src="${escapeHtml(recipe.image || 'img/recipes/placeholder.svg')}" alt="${escapeHtml(recipe.title)}">
+        <img class="recipe-photo" src="${escapeHtml(recipe.image || 'img/recipes/placeholder.svg')}" alt="Готовое блюдо: ${escapeHtml(recipe.title)}">
       </div>
       <div class="col-lg-6">
         <span class="badge badge-soft">${escapeHtml(recipe.type)}</span>
@@ -90,20 +90,20 @@ function render() {
             : `<button class="btn btn-outline-accent btn-sm btn-toggle${followed ? ' is-active' : ''}" type="button" data-action="follow">${followed ? 'Вы подписаны' : 'Подписаться'}</button>`}
         </div>
 
-        <ul class="recipe-facts">
+        <ul class="recipe-facts" aria-label="Коротко о рецепте">
           <li>${icon('clock')}<span>Время</span><strong>${recipe.time} мин</strong></li>
           <li>${icon('users')}<span>Порции</span><strong>${recipe.servings}</strong></li>
           <li>${icon('level')}<span>Сложность</span><strong>${escapeHtml(recipe.difficulty)}</strong></li>
         </ul>
 
         <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-soft btn-toggle${liked ? ' is-active' : ''}" type="button" data-action="like">
+          <button class="btn btn-soft btn-toggle${liked ? ' is-active' : ''}" type="button" data-action="like" aria-pressed="${liked}">
             ${icon('heart')} Нравится <span data-like-count>${state.likes.length}</span>
           </button>
           <button class="btn btn-soft btn-toggle${state.save ? ' is-active' : ''}" type="button" data-action="save">
             ${icon('bookmark')} <span data-save-label>${state.save ? 'В сохранённых' : 'Сохранить'}</span>
           </button>
-          <a class="btn btn-soft" href="#comments">${icon('comment')} <span data-comments-count>${state.comments.length}</span></a>
+          <a class="btn btn-soft" href="#comments">${icon('comment')} <span class="visually-hidden">Комментарии:</span> <span data-comments-count>${state.comments.length}</span></a>
         </div>
       </div>
     </div>
@@ -173,6 +173,7 @@ async function toggleLike(button) {
     state.likes.push(await api.addLike(me.id, recipeId))
   }
   button.classList.toggle('is-active', !like)
+  button.setAttribute('aria-pressed', !like)
   button.querySelector('[data-like-count]').textContent = state.likes.length
 }
 
@@ -249,6 +250,7 @@ page.addEventListener('submit', async (event) => {
     updateCounters()
     form.reset()
     form.classList.remove('was-validated')
+    toast('Комментарий опубликован')
   } catch (error) {
     if (error.status === 401) goToLogin()
     else toast(error.message)

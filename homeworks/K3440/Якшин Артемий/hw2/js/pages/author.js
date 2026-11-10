@@ -89,7 +89,7 @@ async function renderAuthor() {
             ? '<a class="btn btn-soft" href="profile.html">Перейти в кабинет</a>'
             : `<button class="btn btn-accent btn-toggle${myFollow ? ' is-active' : ''}" type="button" id="followButton">${myFollow ? 'Вы подписаны' : 'Подписаться'}</button>`}
         </div>
-        <ul class="profile-stats">
+        <ul class="profile-stats" aria-label="Статистика кулинара">
           <li><strong>${recipes.length}</strong><span>${plural(recipes.length, 'рецепт', 'рецепта', 'рецептов')}</span></li>
           <li><strong id="followersCount">${followers.length}</strong><span>${plural(followers.length, 'подписчик', 'подписчика', 'подписчиков')}</span></li>
           <li><strong>${following.length}</strong><span>${plural(following.length, 'подписка', 'подписки', 'подписок')}</span></li>

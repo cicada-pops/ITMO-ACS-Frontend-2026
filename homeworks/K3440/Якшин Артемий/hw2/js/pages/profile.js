@@ -54,7 +54,7 @@ function renderHead() {
         <button class="btn btn-accent" type="button" data-new-recipe>${icon('plus')} Новый рецепт</button>
       </div>
     </div>
-    <ul class="profile-stats">
+    <ul class="profile-stats" aria-label="Моя статистика">
       <li><strong>${state.mine.length}</strong><span>${plural(state.mine.length, 'публикация', 'публикации', 'публикаций')}</span></li>
       <li><strong>${state.saved.size}</strong><span>сохранено</span></li>
       <li><strong>${state.following.length}</strong><span>${plural(state.following.length, 'подписка', 'подписки', 'подписок')}</span></li>
@@ -90,7 +90,7 @@ function renderFollowing() {
             <a class="cook-card__name" href="author.html?id=${author.id}">${escapeHtml(author.name)}</a>
             <p class="cook-card__meta">${escapeHtml(author.city)}</p>
           </div>
-          <button class="btn btn-soft btn-sm" type="button" data-unsubscribe="${subscription.id}">Отписаться</button>
+          <button class="btn btn-soft btn-sm" type="button" data-unsubscribe="${subscription.id}" aria-label="Отписаться от ${escapeHtml(author.name)}">Отписаться</button>
         </div>
       </div>`).join('')
     : '<div class="col-12"><div class="empty-state">Вы пока ни на кого не подписаны. <a href="author.html">Найти кулинаров</a></div></div>'
