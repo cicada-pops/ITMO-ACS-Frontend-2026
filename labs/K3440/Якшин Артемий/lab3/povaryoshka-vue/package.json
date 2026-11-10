@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite --port 8080",
+    "api": "json-server db.json -m ./node_modules/json-server-auth -r routes.json --port 3000",
+    "dev": "run-p api start",
     "build": "vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port 8080",
     "lint": "run-s \"lint:*\"",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache"
