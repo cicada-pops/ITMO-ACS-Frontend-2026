@@ -9,9 +9,10 @@ import useAuthStore from '@/stores/auth'
 const auth = useAuthStore()
 const router = useRouter()
 
-function logout() {
+// сначала уходим с закрытой страницы, потом завершаем сессию
+async function logout() {
+  await router.push({ name: 'search' })
   auth.logout()
-  router.push({ name: 'search' })
 }
 </script>
 
