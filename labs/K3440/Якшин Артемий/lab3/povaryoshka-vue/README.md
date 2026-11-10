@@ -1,44 +1,36 @@
-# povaryoshka-vue
+# ЛР3. «Поварёшка» на Vue.js
 
-This template should help get you started developing with Vue 3 in Vite.
+Сайт рецептов из ЛР1–ЛР2 (с доработками ДЗ2–ДЗ4), переписанный как одностраничное приложение:
+Vue 3, Vue Router, Pinia (+ `pinia-persists`), axios, Bootstrap 5. API — `json-server` с `json-server-auth`.
 
-## Recommended IDE Setup
+## Запуск
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
 npm install
+npm run dev        # API на :3000 и приложение на :8080 одной командой
 ```
 
-### Compile and Hot-Reload for Development
+Или по отдельности: `npm run api` и `npm start`. Сборка: `npm run build`, проверка кода: `npm run lint`.
 
-```sh
-npm run dev
-```
+Демо-аккаунт: `demo@povaryoshka.ru` / `povar2026`. json-server сохраняет изменения в `db.json`;
+вернуть исходные данные — `git checkout db.json`.
 
-### Compile and Minify for Production
+## Маршруты
 
-```sh
-npm run build
-```
+| Путь | Страница |
+| --- | --- |
+| `/` | поиск рецептов с фильтрами (`?type=Супы`, `?q=блины`) |
+| `/recipes/:id` | рецепт: фото, ингредиенты, шаги, видео, лайки, комментарии |
+| `/cooks`, `/cooks/:id` | список кулинаров и страница кулинара с подпиской |
+| `/profile` | личный кабинет (только после входа) |
+| `/login`, `/register` | вход и регистрация (только для гостей) |
 
-### Lint with [ESLint](https://eslint.org/)
+## Структура `src`
 
-```sh
-npm run lint
-```
+- `api/` — общий экземпляр axios (токен, ошибки) и классы API: рецепты, пользователи, комментарии, лайки/сохранения/подписки;
+- `stores/` — Pinia: хранилище авторизации, сохраняется в `localStorage`;
+- `composables/` — повторяющаяся логика: `useRecipeSearch`, `useSaved`, `useFollow`, `useTheme`, `useToast`, `useApiError`;
+- `components/` — карточки, фильтры, комментарии, модальные окна, шапка, переключатель темы и т. д.;
+- `layouts/BaseLayout.vue` — шапка, `<main>` и подвал;
+- `views/` — страницы для маршрутов;
+- `router/` — маршруты, ленивая загрузка страниц, navigation guards.
