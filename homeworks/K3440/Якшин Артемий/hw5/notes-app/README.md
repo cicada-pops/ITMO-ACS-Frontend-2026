@@ -5,6 +5,8 @@ API заметок — `json-server`.
 
 ## Запуск
 
+Нужен Node.js 22.18+ или 24.12+ (требование create-vue и Vite 8).
+
 ```bash
 npm install      # установить зависимости из package.json
 npm run api      # API заметок на http://localhost:3000 (json-server, db.json)
