@@ -44,10 +44,11 @@
             <h1 class="hero__title">Что приготовим сегодня?</h1>
             <p class="hero__text my-3">Рецепты от людей, которые готовят каждый день: с фотографиями, пошаговыми инструкциями и видео.</p>
             <form class="hero-search" id="searchForm" role="search">
-              <input class="form-control" type="search" name="q" placeholder="Блины, борщ или «яйца»">
+              <label class="visually-hidden" for="searchInput">Поиск рецептов по названию и ингредиентам</label>
+              <input class="form-control" id="searchInput" type="search" name="q" placeholder="Блины, борщ или «яйца»">
               <button class="btn btn-accent px-4" type="submit"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg> Найти</button>
             </form>
-            <div class="hero__chips">
+            <div class="hero__chips" role="group" aria-label="Популярные запросы">
               <button class="chip" type="button" data-chip="блины">Блины</button>
               <button class="chip" type="button" data-chip="суп">Супы</button>
               <button class="chip" type="button" data-chip="яйца">С яйцами</button>
@@ -74,9 +75,9 @@
               <button class="btn-close" type="button" aria-label="Закрыть" data-bs-dismiss="offcanvas" data-bs-target="#filtersPanel"></button>
             </div>
             <div class="offcanvas-body">
-              <form class="filters w-100" id="filtersForm">
-                <div class="filters__group">
-                  <h3 class="filters__title">Тип блюда</h3>
+              <form class="filters w-100" id="filtersForm" aria-label="Фильтры рецептов">
+                <fieldset class="filters__group">
+                  <legend class="filters__title">Тип блюда</legend>
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="type" value="Завтраки" id="type0">
                     <label class="form-check-label" for="type0">Завтраки</label>
@@ -93,9 +94,9 @@
                     <input class="form-check-input" type="checkbox" name="type" value="Выпечка и десерты" id="type3">
                     <label class="form-check-label" for="type3">Выпечка и десерты</label>
                   </div>
-                </div>
-                <div class="filters__group">
-                  <h3 class="filters__title">Сложность</h3>
+                </fieldset>
+                <fieldset class="filters__group">
+                  <legend class="filters__title">Сложность</legend>
                   <div class="tag-check">
                     <input class="btn-check" type="checkbox" name="difficulty" value="Легко" id="diff0" autocomplete="off">
                     <label class="btn" for="diff0">Легко</label>
@@ -104,9 +105,9 @@
                     <input class="btn-check" type="checkbox" name="difficulty" value="Сложно" id="diff2" autocomplete="off">
                     <label class="btn" for="diff2">Сложно</label>
                   </div>
-                </div>
-                <div class="filters__group">
-                  <h3 class="filters__title">Ингредиенты</h3>
+                </fieldset>
+                <fieldset class="filters__group">
+                  <legend class="filters__title">Ингредиенты</legend>
                   <div class="tag-check">
                     <input class="btn-check" type="checkbox" name="tag" value="яйца" id="tag0" autocomplete="off">
                     <label class="btn" for="tag0">яйца</label>
@@ -127,10 +128,10 @@
                     <input class="btn-check" type="checkbox" name="tag" value="рис" id="tag8" autocomplete="off">
                     <label class="btn" for="tag8">рис</label>
                   </div>
-                </div>
+                </fieldset>
                 <div class="filters__group">
-                  <h3 class="filters__title">Время приготовления</h3>
-                  <select class="form-select" name="time">
+                  <label class="filters__title" for="timeSelect">Время приготовления</label>
+                  <select class="form-select" id="timeSelect" name="time">
                     <option value="">Любое</option>
                     <option value="15">До 15 минут</option>
                     <option value="30">До 30 минут</option>
@@ -149,17 +150,19 @@
         <div class="col-lg-9">
           <div class="results-toolbar">
             <div class="d-flex align-items-center gap-2">
-              <button class="btn btn-soft d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#filtersPanel"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Фильтры</button>
+              <button class="btn btn-soft d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#filtersPanel" aria-controls="filtersPanel"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M7 12h10M10 18h4"/></svg> Фильтры</button>
               <h2 class="h4 mb-0">Найдено: <span id="resultsCount">…</span></h2>
             </div>
-            <select class="form-select" id="sortSelect">
+            <label class="visually-hidden" for="sortSelect">Сортировка</label>
+          <select class="form-select" id="sortSelect">
               <option value="likes">Сначала популярные</option>
               <option value="date">Сначала новые</option>
               <option value="time">Быстрые в начале</option>
             </select>
           </div>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4" id="recipesGrid"></div>
-          <div class="empty-state d-none" id="emptyState">
+          <p class="visually-hidden" id="resultsStatus" role="status" aria-live="polite"></p>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-3 g-4" id="recipesGrid" aria-busy="true"></div>
+          <div class="empty-state d-none" id="emptyState" role="status">
             <p class="h5">Ничего не нашлось</p>
             <p class="mb-0">Попробуйте убрать часть фильтров или изменить запрос.</p>
           </div>

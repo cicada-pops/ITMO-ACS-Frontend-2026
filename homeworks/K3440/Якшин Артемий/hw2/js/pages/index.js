@@ -3,7 +3,7 @@
 
 import { getRecipes } from '../api.js'
 import { bindSaveButtons, loadSaved } from '../saves.js'
-import { renderGrid, renderHeader, showError, showLoading } from '../ui.js'
+import { plural, renderGrid, renderHeader, showError, showLoading } from '../ui.js'
 
 renderHeader()
 
@@ -13,6 +13,7 @@ const searchForm = document.getElementById('searchForm')
 const sortSelect = document.getElementById('sortSelect')
 const counter = document.getElementById('resultsCount')
 const emptyState = document.getElementById('emptyState')
+const status = document.getElementById('resultsStatus')
 
 let saved = new Map()
 let lastRequest = 0
@@ -34,6 +35,7 @@ async function loadRecipes() {
   const filters = readFilters()
   const requestId = ++lastRequest
   showLoading(grid)
+  grid.setAttribute('aria-busy', 'true')
   emptyState.classList.add('d-none')
 
   const params = {
@@ -56,9 +58,14 @@ async function loadRecipes() {
     renderGrid(grid, recipes, { savedIds: new Set(saved.keys()) })
     counter.textContent = recipes.length
     emptyState.classList.toggle('d-none', recipes.length > 0)
+    // скринридер прочитает итог поиска, не перемещая фокус
+    status.textContent = `Найдено ${recipes.length} ${plural(recipes.length, 'рецепт', 'рецепта', 'рецептов')}`
   } catch (error) {
     showError(grid, error)
     counter.textContent = 0
+    status.textContent = 'Не удалось загрузить рецепты'
+  } finally {
+    if (requestId === lastRequest) grid.setAttribute('aria-busy', 'false')
   }
 }
 
